@@ -1,0 +1,187 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Welcome to overleaf, (formerly writeLaTeX) --- just edit 
+% your LaTeX on the left, and we'll compile it for you on 
+% the right. If you give someone the link to this page, they 
+% can edit at the same time. If you create a free overleaf
+% account, all your projects will be saved.  See the help 
+% menu above for more info. Enjoy!
+% -----------------------------------------------------------
+% My thanks to Dana Ernst of Northern Arizona University 
+% for sharing his template with me. This is largely his work.
+% ----------------------------------------------------------- 
+% This is all preamble stuff that you don't have to worry about.
+% Head down to where it says "Start here"
+% -----------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt]{article}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+ 
+\newenvironment{theorem}[2][Théorème]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{property}[2][Propriété]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{conjecture}[2][Conjecture]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{definition}[2][Définition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=[rgb]{0, 0, 0.5},
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+
+\begin{document}
+ 
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+ 
+\title{Démonstrations analyse L2} 
+\author{Maximilien ANTOINE} % replace with your name
+%\date{A fixed date} % for a fixed date, uncomment this line and replace date, otherwise, today's date will be used.
+\maketitle
+
+\noindent Ce sont les réponses aux questions du cours d'analyse 2 en L2 maths à la FST Nancy disponible \href{http://www.iecl.univ-lorraine.fr/~Anne.de-Roton/questions_cours_analyse2.pdf}{ici}. N'hésitez pas à me dire si des choses sont fausses, incompréhensibles, si vous voulez que je rajoute quelque chose ou si j'ai fait dé fote dortograf.
+La bise à vous et bonne chance pour vos examens. :)
+
+\section{Séries numériques}
+\begin{theorem}{}
+Caractérisation de la convergence des séries à termes positifs.
+\end{theorem}
+ 
+\begin{proof}  
+D'après le théorème de la limite monotone appliquée à \big($S_n$\big): comme $u_n = S_{n+1} - S_n \ge 0$, cette suite est croissante. Elle converge si et seulement si elle est majorée.
+\end{proof}
+ \bigskip
+\begin{theorem}{}
+$\sum_{n} u_n$ converge $\Rightarrow \lim_{n\rightarrow+\infty}u_n=0$
+\end{theorem}
+\begin{proof}  
+$\sum u_n < \infty \Rightarrow (S_n) \longrightarrow s \Rightarrow (S_{n+1}) \longrightarrow s \Rightarrow  \lim_{n\rightarrow+\infty}(S_{n+1}-S_n)=0$\\ Donc$\; \lim_{n\rightarrow+\infty}u_{n+1}=0\Rightarrow \lim_{n\rightarrow+\infty}u_n=0$
+\end{proof}
+\bigskip
+\begin{definition}{: Critère de Cauchy}
+Soit $u_n$ une suite de nombres réels ou complexes. Pour que la série de terme général $u_n$ soit convergente, il faut et il suffit que, pour tout $\epsilon > 0$ , il existe un rang $N$ tel que la distance entre les termes $|u_{n+k}-u_n|$ sont inférieures à $\epsilon$ à partir d'un certain rang, c'est à dire:
+\[
+\forall\epsilon\in\mathbb{R_+^*},\exists n_0 \in \mathbb{N}, \forall n \ge n_0, \forall k\in\mathbb{N}, |u_{n+k}-u_n|\leq\epsilon
+\]\\
+D'ailleurs, toute série absolument convergente est convergente.
+\end{definition}
+
+\bigskip
+\begin{definition}{}
+Soient $\sum u_n$ et $\sum v_n$ des séries à termes positifs telles que, à partir d'un certain rang: $u_n \leq v_n$, alors:
+\begin{itemize}
+    \item si $\sum v_n$ converge, alors $\sum u_n$ converge ;
+    \item si $\sum u_n$ diverge, alors $\sum v_n$ diverge.
+\end{itemize}
+\end{definition}
+\begin{proof}
+ Supposons que: $\forall n \in \mathbb{N}, u_n \le v_n$ et notons $(U_n)$ et $(V_n)$ les suites des sommes partielles associées respectivement à $\sum u_n$ et $\sum v_n$.
+ Donc, si $\sum u_n$ converge alors $(V_n)$ est majorée d'après la supposition ci-dessus. Or $u_n \leq v_n \Rightarrow U_n \leq V_n$. Donc si $(V_n)$ est majorée, alors $(U_n)$ l'est aussi ce qui implique que $\sum u_n$ converge.
+\\
+\\
+La seconde assertion est laissée en exercice au lecteur. (Sinon c'est juste la contraposée de la première.)
+\end{proof}
+ \bigskip
+\begin{theorem}{des équivalents}
+Soit $\sum v_n$ une série à termes positifs, alors:
+\begin{itemize}
+    \item si $u_n =_{+\infty}O(v_n)$ alors $\sum v_n$ converge $\Rightarrow \sum u_n$ converge ;
+    \item si $u_n ~_{+\infty}v_n$ alors $\sum v_n$ et $\sum u_n$ sont de mêmes natures.
+\end{itemize}
+\end{theorem}
+\bigskip
+\begin{definition}{: Séries de Riemann}
+Soit $S_n=\sum\frac{1}{n^\alpha}, \alpha \in \mathbb{R}$, alors:
+\begin{itemize}
+    \item $S_n$ converge si et seulement si $\alpha > 1$ ;
+    \item $S_n$ diverge sinon.
+\end{itemize}
+\end{definition}
+\bigskip
+\begin{definition}{\hypertarget{riemannCritere}{: Critère de Riemann}}
+Soit $\sum u_n$ une série à termes positifs et $\alpha \in \mathbb{R^*_+}$, alors:
+\begin{itemize}
+    \item si $\lim n^\alpha u_n = l > 0$, $\sum u_n$ converge $\Leftrightarrow \alpha \ge 0$ ;
+    \item si $\alpha > 1$ et $\lim n^\alpha u_n = 0$, $\sum u_n$ converge ;
+    \item si $\lim nu_n = +\infty$, $\sum u_n$ est divergente.
+\end{itemize}
+\end{definition}
+\bigskip
+\begin{definition}{: Séries de Bertrand}
+Soit $S_n=\sum\frac{1}{n^\alpha\ln^\beta{n}}, \alpha,\beta \in \mathbb{R}$, alors:
+\begin{itemize}
+    \item $S_n$ converge si et seulement si $\alpha > 1$ ou $(\alpha = 1 \;$et$\; \beta > 1)$ ;
+    \item $S_n$ diverge sinon.
+\end{itemize}
+\end{definition}
+\begin{proof}
+ Posons $u_n=\frac{1}{n^\alpha\ln^\beta{n}}$, alors:
+ \begin{itemize}
+     \item Si $\alpha > 1, \gamma = (1 + \alpha)/2 > 1$ et $n^\gamma u_n = \frac{1}{n^{(\alpha-1)/2}\ln^\beta{n}} \longrightarrow 0 : \sum u_n$ converge d'après le \hyperlink{riemannCritere}{critère de Riemann} ;
+     \item Si $\alpha < 1, nu_n = \frac{n^{1-\alpha}{\ln^\beta{n}}}\longrightarrow+\infty:\sum u_n$ diverge d'après le \hyperlink{riemannCritere}{critère de Riemann}.
+     \item Si $\alpha = 1$, la démonstration est triviale et n'est pas demandée. Elle est donc laissée au lecteur pour qu'il s'amuse. 
+ \end{itemize}
+\end{proof}
+\bigskip
+\begin{definition}{: Test de d'Alembert}
+Soit $\sum u_n$ une série à termes strictements positifs et la suite $(\frac{u_{n+1}}{u_n})_{n\ge n_0}$ admet une limite $l\in\mathbb{R}$, alors:
+\begin{itemize}
+    \item si $l < 1$, alors $\sum u_n$ converge ;
+    \item si $l > 1$, alors $\sum u_n$ diverge ;
+    \item si $l = 1$, alors on ne peut pas savoir.
+\end{itemize}
+\end{definition}
+\bigskip
+\begin{definition}{: Test de Cauchy}
+Soit $L=\lim_{n\rightarrow+\infty}\sqrt[n]{u_n}$, alors: 
+\begin{itemize}
+    \item si $L < 1$, la série de terme général $u_n$ converge ;
+    \item si $L > 1$, la série de terme général $u_n$ diverge.
+\end{itemize}
+\end{definition}
+\bigskip
+\begin{definition}{: Critère de Leibniz}
+Soit $(u_n)_{n\in\mathbb{N}}$ qui vérifie:
+\begin{itemize}
+    \item $u_n \ge 0, \forall n\ge0$ ;
+    \item $(u_n)_n$ décroit ;
+    \item $\lim_{n\rightarrow\infty} u_n = 0$
+\end{itemize}
+Alors la série alternée $\sum (-1)^nu_n$ converge.
+\end{definition}
+\bigskip
+\begin{definition}{: Critère d'Abel}
+Soient $(a_n)$ et $(b_n)$ deux suites réelles ou complexes (ps: c'est plus utilisé pour les suites complexes/trigonométriques) qui vérifient:
+\begin{itemize}
+    \item La suite $(a_n)$ est réelle et décroit vers 0 ;
+    \item Les sommes partielles de $(b_n)$ sont bornées ;
+\end{itemize}
+Alors, $\sum a_nb_n$ converge.
+\end{definition}
+\bigskip
+\begin{theorem}{: Produit de Cauchy}
+Supposons deux séries $(u_n) $ et $ (v_n)$ avec leurs séries $U_n = \sum u_n$ et $V_n = \sum v_n$ sont absolument convergente, leur produit de Cauchy est absolument convergente et l'on a:\\
+\[
+\sum_{n=0}^\infty c_n= \Bigg(\sum_{i=0}^\infty a_i\Bigg)\Bigg(\sum_{j=0}^\infty b_j\Bigg)
+\]
+\end{theorem}
+\end{document}
